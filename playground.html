@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>JS-Playground</title>
+</head>
+<body>
+    <script type="text/javascript">
+    const myPromise = new Promise((resolve, reject) => {
+        setTimeout(resolve, 500);
+        console.log("Waiting for 500 ms before resolution");
+    });
+    myPromise
+        .then(() => {console.log("Resolved!")})
+        .catch(() => {console.log("Oh NO!");});
+
+    class Horse {
+        constructor(id) {
+            this.id = id;
+            this.position = 0;
+            this.baseSpeed = Math.max(Math.round(Math.random() * 10), 3);
+            this.intervallId = undefined;
+        }
+        move(){
+            this.position += Math.random() * this.baseSpeed;
+        }
+    
+        race(){
+            return new Promise((res, rej) => {
+                this.intervallId = setInterval(() => {
+                    this.move();
+                    if(this.position >= 100){
+                        clearInterval(this.intervallId);
+                        res(this.id);
+                    }
+                }, 500);
+            });
+        }
+    };
+
+    let horses = [new Horse(1), new Horse(2), new Horse(3), new Horse(4), new Horse(5)];
+    let promises = [];
+    horses.forEach(h => { promises.push(h.race()) });
+    Promise.race(promises).then((id) => {
+        console.log(`The winner is horse ${id}`);
+    });
+    </script>
+</body>
+</html>
