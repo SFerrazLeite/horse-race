@@ -11,47 +11,93 @@
         <div class="container">
             <h1 class="display-4">Horse Race</h1>
             <p class="lead">Welcome to this horse race simulation.</p>
-            <button type="button" class="btn btn-primary btn-lg" onclick="myFunction()">Start the race!</button>
+            <button type="button" id="raceStarterButton" class="btn btn-primary btn-lg" onclick="startRace()">Start the race!</button>
         </div>
     </div>
     <div class="container container-fluid">
-        <div class="row" style="margin-top:20px">
+        <div class="row">
             <div class="col">
-                <div class="progress">
-                    <div id="horse1" class="progress-bar" role="progressbar" style="width: 0%"></div>
-                </div>                      
+                <span id="horse1"
+                class="text-left"
+                style="display: inline-block;
+                position: relative;
+                left: -2%;
+                transform: scale(-1, 1);
+                font-size: 30px;">&#127943;</span>
+            </div>
+        </div>
+        <div class="row" style="margin-top:-15px">
+            <div class="col">
+                <hr/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <span id="horse2"
+                class="text-left"
+                style="display: inline-block;
+                position: relative;
+                left: -2%;
+                transform: scale(-1, 1);
+                font-size: 30px;">&#127943;</span>
+            </div>
+        </div>
+        <div class="row" style="margin-top:-15px">
+            <div class="col">
+                <hr/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <span id="horse3"
+                    class="text-left"
+                    style="display: inline-block;
+                    position: relative;
+                    left: -2%;
+                    transform: scale(-1, 1);
+                    font-size: 30px;">&#127943;</span>
+            </div>
+        </div>
+        <div class="row" style="margin-top:-15px">
+            <div class="col">
+                <hr/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <span id="horse4"
+                    class="text-left"
+                    style="display: inline-block;
+                    position: relative;
+                    left: -2%;
+                    transform: scale(-1, 1);
+                    font-size: 30px;">&#127943;</span>
+            </div>
+        </div>
+        <div class="row" style="margin-top:-15px">
+            <div class="col">
+                <hr/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <span id="horse5"
+                    class="text-left"
+                    style="display: inline-block;
+                    position: relative;
+                    left: -1.5%;
+                    transform: scale(-1, 1);
+                    font-size: 30px;">&#127943;</span>
+            </div>
+        </div>
+        <div class="row" style="margin-top:-15px">
+            <div class="col">
+                <hr/>
             </div>
         </div>
         <div class="row" style="margin-top:20px">
-            <div class="col">
-                <div class="progress">
-                    <div id="horse2" class="progress-bar" role="progressbar" style="width: 0%"></div>
-                </div>                      
-            </div>
-        </div>
-        <div class="row" style="margin-top:20px">
-            <div class="col">
-                <div class="progress">
-                    <div id="horse3" class="progress-bar" role="progressbar" style="width: 0%"></div>
-                </div>                      
-            </div>
-        </div>
-        <div class="row" style="margin-top:20px">
-            <div class="col">
-                <div class="progress">
-                    <div id="horse4" class="progress-bar" role="progressbar" style="width: 0%"></div>
-                </div>                      
-            </div>
-        </div>
-        <div class="row" style="margin-top:20px">
-            <div class="col">
-                <div class="progress">
-                    <div id="horse5" class="progress-bar" role="progressbar" style="width: 0%"></div>
-                </div>                      
-            </div>
-        </div>
-        <div class="row" style="margin-top:20px">
-            <div class="col" id="winner">
+            <div class="col text-center">
+                <span id="winner" style="font-size: 20px;" />
             </div>
         </div>
     </div>
@@ -64,10 +110,13 @@
     <script type="text/javascript">
     function declareWinner(id){
         const el = document.getElementById("winner");
-        el.innerHTML = `The winner is ${id}`;
+        el.innerHTML = `The winner is ${id} 🏆`;
     }
 
-    function myFunction(){
+    function startRace(){
+        const starterButton = document.getElementById('raceStarterButton');
+        starterButton.setAttribute("disabled", "true");
+
         class Horse {
             constructor(id) {
                 this.element = document.getElementById(`horse${id}`);
@@ -79,21 +128,35 @@
 
             move(){
                 this.position += Math.random() * this.baseSpeed;
-                this.element.style = `width: ${Math.round(this.position)}%`;
+                if(this.position > 100){
+                    this.position = 100;
+                }
+            }
+            draw(){
+                this.element.style = `display: inline-block;
+                                      position: relative;
+                                      left: ${this.position-1.5}%;
+                                      transform: scale(-1, 1);
+                                      font-size: 30px;`;
             }
             race(){
                 return new Promise((res, rej) => {
                     this.intervallId = setInterval(() => {
                         this.move();
-                        //console.log(this.id);
+                        this.draw();
                         if(this.position >= 100){
                             clearInterval(this.intervallId);
                             res(this.id);
                         }
-                    }, 500);
+                    }, 300);
                 });
             }
         };
+
+        function activateStarterButton(){
+            const starterButton = document.getElementById('raceStarterButton');
+            starterButton.removeAttribute("disabled");
+        }
 
         let horses = [new Horse(1), new Horse(2), new Horse(3), new Horse(4), new Horse(5)];
         let promises = [];
