@@ -7,15 +7,16 @@
     <title>Horse Race!</title>
 </head>
 <body>
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <h1 class="display-4">Horse Race</h1>
-            <p class="lead">Welcome to this horse race simulation.</p>
-            <button type="button" id="raceStarterButton" class="btn btn-primary btn-lg" onclick="startRace()">Start the race!</button>
-        </div>
-    </div>
     <div class="container container-fluid">
         <div class="row">
+            <nav class="col navbar navbar-dark bg-dark">
+                <h1 class="navbar-brand">Horse Race</h1>
+                <form class="form-inline">
+                    <button type="button" id="raceStarterButton" class="btn btn-primary btn-lg" onclick="startRace()">Start the race!</button>
+                </form>
+            </nav>
+        </div>
+        <div class="row" style="margin-top:20px; border-bottom: 2px; border-bottom-style: solid">
             <div class="col">
                 <span id="horse1"
                 class="text-left"
@@ -26,12 +27,7 @@
                 font-size: 30px;">&#127943;</span>
             </div>
         </div>
-        <div class="row" style="margin-top:-15px">
-            <div class="col">
-                <hr/>
-            </div>
-        </div>
-        <div class="row">
+        <div class="row" style="margin-top:20px; border-bottom: 2px; border-bottom-style: solid">
             <div class="col">
                 <span id="horse2"
                 class="text-left"
@@ -42,12 +38,7 @@
                 font-size: 30px;">&#127943;</span>
             </div>
         </div>
-        <div class="row" style="margin-top:-15px">
-            <div class="col">
-                <hr/>
-            </div>
-        </div>
-        <div class="row">
+        <div class="row" style="margin-top:20px; border-bottom: 2px; border-bottom-style: solid">
             <div class="col">
                 <span id="horse3"
                     class="text-left"
@@ -58,12 +49,7 @@
                     font-size: 30px;">&#127943;</span>
             </div>
         </div>
-        <div class="row" style="margin-top:-15px">
-            <div class="col">
-                <hr/>
-            </div>
-        </div>
-        <div class="row">
+        <div class="row" style="margin-top:20px; border-bottom: 2px; border-bottom-style: solid">
             <div class="col">
                 <span id="horse4"
                     class="text-left"
@@ -74,12 +60,7 @@
                     font-size: 30px;">&#127943;</span>
             </div>
         </div>
-        <div class="row" style="margin-top:-15px">
-            <div class="col">
-                <hr/>
-            </div>
-        </div>
-        <div class="row">
+        <div class="row" style="margin-top:20px; border-bottom: 2px; border-bottom-style: solid">
             <div class="col">
                 <span id="horse5"
                     class="text-left"
@@ -88,11 +69,6 @@
                     left: -1.5%;
                     transform: scale(-1, 1);
                     font-size: 30px;">&#127943;</span>
-            </div>
-        </div>
-        <div class="row" style="margin-top:-15px">
-            <div class="col">
-                <hr/>
             </div>
         </div>
         <div class="row" style="margin-top:20px">
